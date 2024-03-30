@@ -1,0 +1,37 @@
+pkgname=hideos-aqua-backgrounds
+pkgver=aqua
+pkgrel=1
+pkgdesc="Background images and data for GNOME"
+url="https://gitlab.gnome.org/GNOME/hideos-aqua-backgrounds"
+arch=(any)
+license=(CC-BY-SA-3.0)
+depends=(libjxl)
+makedepends=(
+  glib2
+  git
+  meson
+)
+groups=(gnome)
+_commit=505b4ac71690abe8fef0019b151c963c4362d36d
+source=("git+https://github.com/EyeHide/HideBackgrounds.git#commit=$_commit")
+b2sums=('SKIP')
+
+pkgver() {
+  cd HideBackgrounds
+  git describe --tags | sed -r 's/\.([a-z])/\1/;s/([a-z])\./\1/;s/[^-]*-g/r&/;s/-/+/g'
+}
+
+build() {
+  arch-meson HideBackgrounds build
+  meson compile -C build
+}
+
+check() {
+  meson test -C build --print-errorlogs
+}
+
+package() {
+  meson install -C build --destdir "$pkgdir"
+}
+
+# vim:set sw=2 sts=-1 et:
