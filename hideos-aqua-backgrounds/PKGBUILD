@@ -12,7 +12,7 @@ makedepends=(
   meson
 )
 groups=(gnome)
-_commit=505b4ac71690abe8fef0019b151c963c4362d36d
+_commit=1b316b0d08f259e42c7c5707d05b8aa424316804
 source=("git+https://github.com/EyeHide/HideBackgrounds.git#commit=$_commit")
 b2sums=('SKIP')
 
