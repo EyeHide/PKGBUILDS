@@ -1,0 +1,10 @@
+{
+  "description": "Round the monitor corners",
+  "name": "HideOS Corners",
+  "settings-schema": "org.gnome.shell.extensions.panel-corners",
+  "shell-version": [
+    "45"
+  ],
+  "uuid": "hideos-corners@eyehide",
+  "version": 9
+}

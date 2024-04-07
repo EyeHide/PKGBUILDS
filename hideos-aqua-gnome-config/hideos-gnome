@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Rice gnome up
+
+gsettings set org.gnome.shell welcome-dialog-last-shown-version $(gnome-shell --version | grep -oP '\d+\.\d+') # disable the welcome screen
+
+# Functions
+set_gnome() {
+    # --- DEFAULT BACKGROUND
+    gsettings set org.gnome.desktop.background picture-uri "file:///usr/share/backgrounds/gnome/arnauld.jpg"
+    gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/gnome/arnauld.jpg"
+    # --- FONT
+    gsettings set org.gnome.desktop.interface font-antialiasing "rgba"
+    gsettings set org.gnome.desktop.interface font-name "Inter 11"
+    gsettings set org.gnome.desktop.interface document-font-name "Inter 11"
+    gsettings set org.gnome.desktop.interface monospace-font-name "JetBrains Mono 10"
+    gsettings set org.gnome.desktop.wm.preferences titlebar-font "Inter Bold 11"
+    # --- THEME
+    gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+    gsettings set org.gnome.desktop.interface icon-theme "hideos-icons"
+    # --- TOPBAR CLOCK
+    gsettings set org.gnome.desktop.interface clock-show-date false
+    gsettings set org.gnome.desktop.interface clock-show-seconds false
+    gsettings set org.gnome.desktop.interface clock-show-weekday false
+    # --- WINDOW BUTTONS
+    gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:minimize,maximize,close"
+}
+
+set_extensions() {
+    # --- DOCK
+    gnome-extensions enable dash-to-dock@eyehide
+    dconf write /org/gnome/shell/extensions/dash-to-dock/intellihide-mode "'ALL_WINDOWS'"
+    dconf write /org/gnome/shell/extensions/dash-to-dock/background-opacity "0.30000000000000004"
+    dconf write /org/gnome/shell/extensions/dash-to-dock/custom-theme-shrink "true"
+    dconf write /org/gnome/shell/extensions/dash-to-dock/transparency-mode "'FIXED'"
+    dconf write /org/gnome/shell/extensions/dash-to-dock/custom-background-color "true"
+    dconf write /org/gnome/shell/extensions/dash-to-dock/background-color "'rgb(0,0,0)'"
+    # --- ROUND CORNERS
+    gnome-extensions enable hideos-corners@eyehide
+}
+
+# Check if it is the first startup
+if [ "$(gsettings get org.gnome.software first-run)" == "true" ]; then 
+    set_gnome
+    set_extensions
+    echo "[HideOS Ricer] Riced up!"
+else
+    exit
+fi
+
+
+

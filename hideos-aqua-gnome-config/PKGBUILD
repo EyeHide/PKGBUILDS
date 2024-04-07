@@ -1,0 +1,16 @@
+pkgname=hideos-aqua-gnome-config
+pkgver=0.1
+pkgrel=1
+arch=('any')
+license=('MIT')
+source=("hideos-gnome")
+b2sums=('SKIP')
+
+prepare() {
+  cp -r "../extensions/" "."
+}
+
+package() {
+ install -Dm644 "$srcdir/hideos-gnome" "$pkgdir/usr/local/bin/hideos-gnome"
+ mkdir -p "$pkgdir/usr/local/share/gnome-shell" && mv "$srcdir/extensions" "$pkgdir/usr/local/share/gnome-shell/extensions"
+}
