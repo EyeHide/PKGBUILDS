@@ -17,7 +17,8 @@ set_gnome() {
     gsettings set org.gnome.desktop.wm.preferences titlebar-font "Inter Bold 11"
     # --- THEME
     gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-    gsettings set org.gnome.desktop.interface icon-theme "hideos-icons"
+    gsettings set org.gnome.desktop.interface icon-theme "hideos"
+    gsettings set org.gnome.desktop.interface cursor-theme "hideos"
     # --- TOPBAR CLOCK
     gsettings set org.gnome.desktop.interface clock-show-date false
     gsettings set org.gnome.desktop.interface clock-show-seconds false
