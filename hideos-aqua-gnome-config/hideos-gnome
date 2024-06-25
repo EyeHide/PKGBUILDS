@@ -29,26 +29,29 @@ set_gnome() {
 
 set_extensions() {
     # --- DOCK
-    gnome-extensions enable dash-to-dock@eyehide
+    gnome-extensions enable dash-to-dock@micxgx.gmail.com
     dconf write /org/gnome/shell/extensions/dash-to-dock/intellihide-mode "'ALL_WINDOWS'"
     dconf write /org/gnome/shell/extensions/dash-to-dock/background-opacity "0.30000000000000004"
     dconf write /org/gnome/shell/extensions/dash-to-dock/custom-theme-shrink "true"
     dconf write /org/gnome/shell/extensions/dash-to-dock/transparency-mode "'FIXED'"
     dconf write /org/gnome/shell/extensions/dash-to-dock/custom-background-color "true"
     dconf write /org/gnome/shell/extensions/dash-to-dock/background-color "'rgb(0,0,0)'"
+    dconf write /org/gnome/shell/extensions/dash-to-dock/running-indicator-dominant-color "true"
+    dconf write /org/gnome/shell/extensions/dash-to-dock/running-indicator-style "'DOTS'"
     # --- ROUND CORNERS
-    gnome-extensions enable hideos-corners@eyehide
+    gnome-extensions enable panel-corners@aunetx
     dconf write /org/gnome/shell/extensions/panel-corners/panel-corners false
     # --- BLUR
-    gnome-extensions enable hideos-blur@eyehide
+    gnome-extensions enable blur-my-shell@aunetx
     # --- DESKTOP
-    gnome-extensions enable hideos-desktop@eyehide
+    gnome-extensions enable gtk4-ding@smedius.gitlab.com
 }
 
+# Set all extensions on each startup
+set_extensions
 # Check if it is the first startup
 if [ "$(gsettings get org.gnome.software first-run)" == "true" ]; then 
-    set_gnome
-    set_extensions
+    set_gnome 
     echo "[HideOS Ricer] Riced up!"
 else
     exit

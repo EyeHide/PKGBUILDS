@@ -8,7 +8,7 @@ b2sums=('SKIP')
 
 prepare() {
   cp -r "../extensions/" "."
-  sudo chmod 755 ./**
+  sudo chmod -R 755 ./
 }
 
 package() {
