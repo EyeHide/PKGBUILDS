@@ -44,14 +44,15 @@ set_extensions() {
     # --- BLUR
     gnome-extensions enable blur-my-shell@aunetx
     # --- DESKTOP
-    gnome-extensions enable gtk4-ding@smedius.gitlab.com
+    gnome-extensions enable ding@rastersoft.com 
 }
 
 # Set all extensions on each startup
 set_extensions
 # Check if it is the first startup
-if [ "$(gsettings get org.gnome.software first-run)" == "true" ]; then 
+if ! [ -f $HOME/.local/share/gnome-shell/.hideos-rice-version ]; then 
     set_gnome 
+    echo "0.1" > $HOME/.local/share/gnome-shell/.hideos-rice-version
     echo "[HideOS Ricer] Riced up!"
 else
     exit
